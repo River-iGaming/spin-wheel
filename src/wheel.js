@@ -151,7 +151,9 @@ export class Wheel {
 
     // Adjust the font size of labels so they all fit inside the wheel's radius:
     this._itemLabelFontSize = this.itemLabelFontSizeMax * (this._size / Constants.baseCanvasSize);
-    this._labelMaxWidth = this._actualRadius * (this.itemLabelRadius - this.itemLabelRadiusMax);
+    // this._labelMaxWidth = this._actualRadius * (this.itemLabelRadius - this.itemLabelRadiusMax);
+
+    this._labelMaxWidth = Math.abs(this.itemLabelRadius - this.itemLabelRadiusMax) * this._actualRadius;
 
     if (this.itemLabelAlign === 'center') {
       this._labelMaxWidth *= 2;
@@ -160,6 +162,15 @@ export class Wheel {
     for (const item of this._items) {
       this._itemLabelFontSize = Math.min(this._itemLabelFontSize, util.getFontSizeToFit(item.label, this.itemLabelFont, this._labelMaxWidth, this._context));
     }
+
+    console.warn('>>> Wheel resized', {
+      itemLabelRadius: this.itemLabelRadius,
+      itemLabelRadiusMax: this.itemLabelRadiusMax,
+      actualRadius: this._actualRadius,
+      baseCanvasSize: Constants.baseCanvasSize,
+      labelMaxWidth: this._labelMaxWidth,
+      itemLabelFontSize: this._itemLabelFontSize,
+    });
 
     this.refresh();
 
@@ -188,7 +199,7 @@ export class Wheel {
     // Set font:
     ctx.textBaseline = 'middle';
     ctx.textAlign = this.itemLabelAlign;
-    ctx.font = this._itemLabelFontSize + 'px ' + this.itemLabelFont;
+    ctx.font = '700 ' + this._itemLabelFontSize + 'px ' + this.itemLabelFont;
 
     // Build paths for each item:
     for (const [i, a] of angles.entries()) {

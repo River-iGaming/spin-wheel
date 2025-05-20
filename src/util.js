@@ -52,7 +52,7 @@ export function aveArray(array = []) {
  */
 export function getFontSizeToFit(text, fontFamily, maxWidth, canvasContext) {
   canvasContext.save();
-  canvasContext.font = `1px ${fontFamily}`;
+  canvasContext.font = `700 1px ${fontFamily}`;
   const w = canvasContext.measureText(text).width;
   canvasContext.restore();
   return maxWidth / w;

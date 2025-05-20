@@ -3,19 +3,35 @@ import {Wheel} from '../../../dist/spin-wheel-esm.js';
 const props = {
   items: [
     {
-      label: 'one',
+      label: '1 Spin',
     },
     {
-      label: 'two',
+      label: '20 Spins',
     },
     {
-      label: 'three',
+      label: '50 Spins',
+    },
+    {
+      label: 'Jackpot',
+    },
+    {
+      label: 'Midi Jackpot',
+    },
+    {
+      label: 'Mini Jackpot',
     },
   ],
   itemBackgroundColors: ['#fff', '#eee', '#ddd'],
-  itemLabelFontSizeMax: 40,
-  rotationResistance: -100,
-  rotationSpeedMax: 1000,
+		isInteractive: false,
+		borderWidth: 0,
+		radius: 0.94,
+		pointerAngle: 90,
+		itemLabelRotation: 0,
+		lineWidth: 0,
+		itemLabelAlign: 'left',
+		itemLabelRadius: 0.4,
+		itemLabelRadiusMax: 0,
+		rotationSpeedMax: 40000,
 };
 
 const container = document.querySelector('.wheel-wrapper');
